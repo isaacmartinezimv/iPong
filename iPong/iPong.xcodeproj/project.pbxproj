@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A2E63E72288240100718E34 /* LLPIXEL3.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E63E62288240100718E34 /* LLPIXEL3.ttf */; };
+		6A2E63E922882DBC00718E34 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E63E822882DBC00718E34 /* MenuVC.swift */; };
 		6AA7C5C4228703080096339F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA7C5C3228703080096339F /* AppDelegate.swift */; };
 		6AA7C5C6228703080096339F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6AA7C5C5228703080096339F /* GameScene.sks */; };
 		6AA7C5C8228703080096339F /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6AA7C5C7228703080096339F /* Actions.sks */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		6A2E63E62288240100718E34 /* LLPIXEL3.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLPIXEL3.ttf; sourceTree = "<group>"; };
+		6A2E63E822882DBC00718E34 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		6AA7C5C0228703080096339F /* iPong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AA7C5C3228703080096339F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AA7C5C5228703080096339F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				6AA7C5D2228703090096339F /* LaunchScreen.storyboard */,
 				6AA7C5D5228703090096339F /* Info.plist */,
 				6A2E63E62288240100718E34 /* LLPIXEL3.ttf */,
+				6A2E63E822882DBC00718E34 /* MenuVC.swift */,
 			);
 			path = iPong;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AA7C5CA228703080096339F /* GameScene.swift in Sources */,
+				6A2E63E922882DBC00718E34 /* MenuVC.swift in Sources */,
 				6AA7C5CC228703080096339F /* GameViewController.swift in Sources */,
 				6AA7C5C4228703080096339F /* AppDelegate.swift in Sources */,
 			);

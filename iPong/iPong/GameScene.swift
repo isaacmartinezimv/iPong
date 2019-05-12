@@ -27,15 +27,18 @@ class GameScene: SKScene {
         
         //Asign the variables into the game
         playerScoreLabel = self.childNode(withName: "playerScoreLabel") as! SKLabelNode
-        
         enemyScoreLabel = self.childNode(withName: "enemyScoreLabel") as! SKLabelNode
         
-        myBall = self.childNode(withName: "spriteBall") as! SKSpriteNode
         myEnemy = self.childNode(withName: "spriteEnemy") as! SKSpriteNode
-        myPlayer = self.childNode(withName: "spritePlayer") as! SKSpriteNode
+        myEnemy.position.y = (self.frame.height / 2) - 50
         
+        myPlayer = self.childNode(withName: "spritePlayer") as! SKSpriteNode
+        myPlayer.position.y = (-self.frame.height / 2) + 50
+        
+        myBall = self.childNode(withName: "spriteBall") as! SKSpriteNode
+
         //Initial impulse
-        myBall.physicsBody?.applyImpulse(CGVector(dx: 20, dy: 20))
+        myBall.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
         
         //create the border arround the scene
         let myBorder = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -43,7 +46,6 @@ class GameScene: SKScene {
         myBorder.restitution = 1
         
         self.physicsBody = myBorder
-        
     }
     
     func startGame() {
@@ -59,11 +61,11 @@ class GameScene: SKScene {
         
         if playerWhoWon == myPlayer {
           score[0] += 1
-            myBall.physicsBody?.applyImpulse(CGVector(dx: 20, dy: 20))
+            myBall.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
 
         } else if playerWhoWon == myEnemy{
             score[1] += 1
-            myBall.physicsBody?.applyImpulse(CGVector(dx: -20, dy: -20))
+            myBall.physicsBody?.applyImpulse(CGVector(dx: -10, dy: -10))
 
         }
         
@@ -87,10 +89,10 @@ class GameScene: SKScene {
         myEnemy.run(SKAction.moveTo(x: myBall.position.x, duration: 1.0))
         
         //testing positions for applying points
-        if myBall.position.y <= myPlayer.position.y - 70 {
+        if myBall.position.y <= myPlayer.position.y - 30 {
             addScore(playerWhoWon: myEnemy)
             
-        } else if myBall.position.y >= myEnemy.position.y + 70 {
+        } else if myBall.position.y >= myEnemy.position.y + 30 {
             addScore(playerWhoWon: myPlayer)
         }
     }
