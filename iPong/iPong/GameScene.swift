@@ -23,7 +23,6 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        startGame()
         
         //Asign the variables into the game
         playerScoreLabel = self.childNode(withName: "playerScoreLabel") as! SKLabelNode
@@ -36,9 +35,6 @@ class GameScene: SKScene {
         myPlayer.position.y = (-self.frame.height / 2) + 50
         
         myBall = self.childNode(withName: "spriteBall") as! SKSpriteNode
-
-        //Initial impulse
-        myBall.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
         
         //create the border arround the scene
         let myBorder = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -46,11 +42,14 @@ class GameScene: SKScene {
         myBorder.restitution = 1
         
         self.physicsBody = myBorder
+        startGame()
+
     }
     
     func startGame() {
         score = [0,0]
         updateScoreInLabels()
+        myBall.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
     }
     
     func addScore(playerWhoWon: SKSpriteNode) {
@@ -79,6 +78,8 @@ class GameScene: SKScene {
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         recognizeMovementForPlayerBar(touches)
+        
+        
     }
 
     
@@ -86,7 +87,26 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         
         //Making the enemy move with the ball move but with a little delay
-        myEnemy.run(SKAction.moveTo(x: myBall.position.x, duration: 1.0))
+        
+        
+        switch currentGameType {
+        case .easy:
+            myEnemy.run(SKAction.moveTo(x: myBall.position.x, duration: 1.0))
+            break
+        case .medium:
+            myEnemy.run(SKAction.moveTo(x: myBall.position.x, duration: 0.7))
+            break
+        case .hard:
+            myEnemy.run(SKAction.moveTo(x: myBall.position.x, duration: 0.5))
+            break
+        case .player2:
+            break
+        }
+        
+        
+        
+        
+        
         
         //testing positions for applying points
         if myBall.position.y <= myPlayer.position.y - 30 {
@@ -101,7 +121,17 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             
-            myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.2))
+            if currentGameType == .player2 {
+                if location.y > 0 {
+                    myEnemy.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                    
+                }
+                if location.y < 0 {
+                    myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                }
+            } else {
+                myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.2))
+            }
         }
     }
     
