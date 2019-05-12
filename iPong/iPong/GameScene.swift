@@ -15,10 +15,20 @@ class GameScene: SKScene {
     var myEnemy = SKSpriteNode()
     var myPlayer = SKSpriteNode()
     
+    var playerScoreLabel = SKLabelNode()
+    var enemyScoreLabel = SKLabelNode()
+    
+    
     var score = [Int]()
     
     override func didMove(to view: SKView) {
+        
         startGame()
+        
+        //Asign the variables into the game
+        playerScoreLabel = self.childNode(withName: "playerScoreLabel") as! SKLabelNode
+        
+        enemyScoreLabel = self.childNode(withName: "enemyScoreLabel") as! SKLabelNode
         
         myBall = self.childNode(withName: "spriteBall") as! SKSpriteNode
         myEnemy = self.childNode(withName: "spriteEnemy") as! SKSpriteNode
@@ -38,9 +48,11 @@ class GameScene: SKScene {
     
     func startGame() {
         score = [0,0]
+        updateScoreInLabels()
     }
     
     func addScore(playerWhoWon: SKSpriteNode) {
+        
         //reset the position and impulse of ball after each point
         myBall.position = CGPoint(x: 0, y: 0)
         myBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
@@ -55,7 +67,7 @@ class GameScene: SKScene {
 
         }
         
-        print(score)
+        updateScoreInLabels()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -88,9 +100,11 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             
             myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.2))
-            
-
-            
         }
+    }
+    
+    func updateScoreInLabels(){
+        playerScoreLabel.text = "\(score[1])"
+        enemyScoreLabel.text = "\(score[0])"
     }
 }
