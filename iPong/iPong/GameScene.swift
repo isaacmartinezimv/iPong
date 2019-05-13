@@ -59,11 +59,11 @@ class GameScene: SKScene {
         myBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         if playerWhoWon == myPlayer {
-          score[0] += 1
+          score[1] += 1
             myBall.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 10))
 
         } else if playerWhoWon == myEnemy{
-            score[1] += 1
+            score[0] += 1
             myBall.physicsBody?.applyImpulse(CGVector(dx: -10, dy: -10))
 
         }
@@ -79,7 +79,6 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         recognizeMovementForPlayerBar(touches)
         
-        
     }
 
     
@@ -87,8 +86,6 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         
         //Making the enemy move with the ball move but with a little delay
-        
-        
         switch currentGameType {
         case .easy:
             myEnemy.run(SKAction.moveTo(x: myBall.position.x, duration: 1.0))
@@ -102,12 +99,7 @@ class GameScene: SKScene {
         case .player2:
             break
         }
-        
-        
-        
-        
-        
-        
+
         //testing positions for applying points
         if myBall.position.y <= myPlayer.position.y - 30 {
             addScore(playerWhoWon: myEnemy)
@@ -127,10 +119,10 @@ class GameScene: SKScene {
                     
                 }
                 if location.y < 0 {
-                    myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                    myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.0))
                 }
             } else {
-                myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.2))
+                myPlayer.run(SKAction.moveTo(x: location.x, duration: 0.0))
             }
         }
     }
